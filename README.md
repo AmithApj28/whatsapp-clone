@@ -26,5 +26,34 @@ It allows users to send and receive messages in real-time with message persisten
 
 ---
 
-## 📂 Project Structure
+
+
+## ⚡ How to Run
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/whatsapp-clone.git
+   cd whatsapp-clone
+2. **Set up PostgreSQL Database**
+    ```bash
+    Set up PostgreSQL Database
+3. **Update application.properties**
+    ```bash
+    spring.datasource.url=jdbc:postgresql://localhost:5432/whatsapp_clone
+    spring.datasource.username=your_username
+    spring.datasource.password=your_password
+    spring.jpa.hibernate.ddl-auto=update
+    
+4.**Run the application**
+   ```bash
+   mvn clean install
+   mvn spring-boot:run
+
+
+
+
+    
+
+   
+   
 
