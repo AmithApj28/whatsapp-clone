@@ -25,29 +25,27 @@ It allows users to send and receive messages in real-time with message persisten
 - **Build Tool:** Maven  
 
 ---
+## Running the Application
 
-
-
-## ⚡ How to Run
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/whatsapp-clone.git
-   cd whatsapp-clone
-2. **Set up PostgreSQL Database**
-    ```bash
-    Set up PostgreSQL Database
-3. **Update application.properties**
-    ```bash
-    spring.datasource.url=jdbc:postgresql://localhost:5432/whatsapp_clone
-    spring.datasource.username=your_username
-    spring.datasource.password=your_password
-    spring.jpa.hibernate.ddl-auto=update
-    
-4.**Run the application**
+1. Build the project:
    ```bash
    mvn clean install
+   
+2. Run the Spring Boot application:
+   ```bash
    mvn spring-boot:run
+4. Open the application in your browser:
+   ```bash
+   http://localhost:8080/
+   
+   
+   
+
+
+
+
+
+
 
 
 
