@@ -39,19 +39,4 @@ It allows users to send and receive messages in real-time with message persisten
    http://localhost:8080/
    
    
-   
-
-
-
-
-
-
-
-
-
-
-    
-
-   
-   
 
