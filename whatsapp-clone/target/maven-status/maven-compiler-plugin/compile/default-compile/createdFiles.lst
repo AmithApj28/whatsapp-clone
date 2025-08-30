@@ -1,0 +1,6 @@
+com\whatsappclone\Message.class
+com\whatsappclone\ChatService.class
+com\whatsappclone\MessageRepository.class
+com\whatsappclone\ChatController.class
+com\whatsappclone\WebSocketConfig.class
+com\whatsappclone\WhatsappCloneApplication.class

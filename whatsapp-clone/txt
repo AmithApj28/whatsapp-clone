@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+        #chat {
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            background-color: #fffaf0;
+            display: none; /* hidden until first message */
+        }
+        .message {
+            margin: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            word-wrap: break-word;
+            background-color: #e6ffe6;
+        }
+        #details {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        #controls {
+            width: 80%;
+            margin: 10px auto;
+            display: none; /* hidden until chat starts */
+            justify-content: space-between;
+        }
+        input {
+            padding: 8px;
+        }
+        #msgInput {
+            flex: 1;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Chat box (hidden initially) -->
+    <div id="chat"></div>
+
+    <!-- First Step: Sender & Receiver -->
+    <div id="details">
+        <input id="sender" type="text" placeholder="Enter Sender Name" />
+        <input id="receiver" type="text" placeholder="Enter Receiver Name" />
+        <button onclick="saveDetails()">Start Chat</button>
+    </div>
+
+    <!-- Message Controls (hidden initially) -->
+    <div id="controls">
+        <input id="msgInput" type="text" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        let senderName = "";
+        let receiverName = "";
+        let chatStarted = false;
+
+        function saveDetails() {
+            senderName = document.getElementById("sender").value.trim();
+            receiverName = document.getElementById("receiver").value.trim();
+
+            if (!senderName || !receiverName) {
+                alert("Please enter both sender and receiver names!");
+                return;
+            }
+
+            // Hide name input, show message input
+            document.getElementById("details").style.display = "none";
+            document.getElementById("controls").style.display = "flex";
+        }
+
+        function sendMessage() {
+            let msg = document.getElementById("msgInput").value.trim();
+            if (!msg) {
+                alert("Enter a message!");
+                return;
+            }
+
+            let chatBox = document.getElementById("chat");
+
+            // Show chat box after first message
+            if (!chatStarted) {
+                chatBox.style.display = "block";
+                chatStarted = true;
+            }
+
+            // Create message div
+            let div = document.createElement("div");
+            div.classList.add("message");
+            div.innerHTML = `<b>${senderName} To ${receiverName}:</b> ${msg}`;
+
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight; // auto scroll down
+            document.getElementById("msgInput").value = "";
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat App</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            margin: 0;
+            padding: 0;
+        }
+        #chat {
+            width: 80%;
+            height: 400px;
+            margin: 30px auto;
+            padding: 15px;
+            border-radius: 15px;
+            overflow-y: auto;
+            background: #ffffff;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            display: none;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        .message {
+            margin: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            word-wrap: break-word;
+            background-color: #e6ffe6;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            animation: slideUp 0.4s ease-in-out;
+        }
+        .system {
+            background-color: #f1f1f1;
+            font-style: italic;
+            text-align: center;
+            color: #555;
+        }
+        #details, #inputArea {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 8px rgba(102,166,255,0.5);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #66a6ff, #89f7fe);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #5a92e8, #78e3f5);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        /* Animations */
+        @keyframes slideUp {
+            from { transform: translateY(15px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chat box -->
+    <div id="chat"></div>
+
+    <!-- Sender & Receiver Details -->
+    <div id="details">
+        <input id="sender" type="text" placeholder="Enter Sender Name" />
+        <input id="receiver" type="text" placeholder="Enter Receiver Name" />
+        <button onclick="startChat()">Start Chat</button>
+    </div>
+
+    <!-- Message Input (hidden at start) -->
+    <div id="inputArea" style="display:none;">
+        <input id="message" type="text" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        let senderName = "";
+        let receiverName = "";
+
+        function startChat() {
+            senderName = document.getElementById("sender").value.trim();
+            receiverName = document.getElementById("receiver").value.trim();
+
+            if (!senderName || !receiverName) {
+                alert("Please enter both sender and receiver names!");
+                return;
+            }
+
+            document.getElementById("details").style.display = "none";
+            document.getElementById("chat").style.display = "block";
+            document.getElementById("inputArea").style.display = "block";
+
+            let chatBox = document.getElementById("chat");
+            let div = document.createElement("div");
+            div.classList.add("message", "system");
+            div.innerHTML = `💬 Chat started between <b>${senderName}</b> and <b>${receiverName}</b>`;
+            chatBox.appendChild(div);
+        }
+
+        function sendMessage() {
+    let msg = document.getElementById("message").value.trim();
+    if (!msg) return;
+
+    let chatBox = document.getElementById("chat");
+
+    let div = document.createElement("div");
+    div.classList.add("message");
+    div.innerHTML = `<b>${senderName} To ${receiverName}:</b> ${msg}`;
+    chatBox.appendChild(div);
+
+    document.getElementById("message").value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+    </script>
+</body>
+</html>
+
